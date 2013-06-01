@@ -90,7 +90,7 @@ problem = createOptimProblem('fmincon', ...
 matlabpool open 4
 
 % Run the solver
-instance=500;  % number of runs
+instance=200;  % number of runs
 [xmin,fmin,flag,outpt,manymins] = run(ms,problem,instance);
 %[xmin,fmin,flag,outpt,manymins] = run(gs,problem);
 

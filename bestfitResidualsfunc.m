@@ -85,7 +85,8 @@ for mu=1:1:8
 end
 
 %[~,a]=linearConst(N1,M2);
-[~,a]=nonlinearConst(N1,M2);
+%[~,a]=nonlinearConst(N1,M2);
+[~,a]=nonlinearConst2(N1,M2);
 
 % %B=diag([1,-1,0,0,1,-1,0,0]);
 % % C is the constraint matrix
@@ -103,10 +104,10 @@ if a(1)^2+a(5)^2-a(2)^2-a(6)^2 < 0
 end
 
 Amp=0.5*(sqrt(a(1)^2+a(5)^2)+sqrt(a(1)^2+a(5)^2-a(2)^2-a(6)^2));
-
-if a(2)^2-4*Amp^2*a(5)^2/(a(1)^2+a(5)^2) > 0
-   disp('Warning: in GOtest1.m: a(2)^2-4*Amp^2*a(5)^2/(a(1)^2+a(5)^2) > 0');
-end
+ 
+% if a(2)^2-4*Amp^2*a(5)^2/(a(1)^2+a(5)^2) > 0
+%    disp('Warning: in GOtest1.m: a(2)^2-4*Amp^2*a(5)^2/(a(1)^2+a(5)^2) > 0');
+% end
  
 
 if -(a(5)-a(7))/(a(1)-a(3))>0
@@ -116,7 +117,13 @@ elseif -(a(5)-a(7))/(a(1)-a(3))<0
 end
 
 %iotaB=acos(-a(2)/(2.0*AmpB*sin(2.0*thetaNB)));
-iota=acos(-(a(2)+a(4))/2.0/(2.0*Amp*sin(2.0*thetaN)));
+%iota=acos(-(a(2)+a(4))/2.0/(2.0*Amp*sin(2.0*thetaN)));
+
+tmp=sqrt((a(2)^2+a(6)^2)/(4.0*Amp));  % positive number
+if a(2)*sin(2*thetaN) > 0  % actually a(2)*sin(2*thetaN) > 0, more robust
+    tmp=-tmp;
+end
+iota=acos(tmp);
 
 bestfitResiduals=zeros(Np,N);
 % is realC a strct or array??

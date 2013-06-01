@@ -126,7 +126,9 @@ end
 %out3=N1
 
 %[LLR,~]=linearConst(N1,M2);
-[LLR,~]=nonlinearConst(N1,M2);
+%[LLR,~]=nonlinearConst(N1,M2);
+[LLR,~]=nonlinearConst2(N1,M2);
+%[LLR,~]=nonlinearConstFzero(N1,M2);
 
 % B=diag([1,-1,0,0,1,-1,0,0]);
 % % C is the constraint matrix
